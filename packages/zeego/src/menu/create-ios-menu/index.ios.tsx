@@ -239,7 +239,7 @@ If you want to use a custom component as your <Content />, you can use the menui
           ).targetChildren?.[0]
 
           if (imageChild) {
-            const { iosIconName } = imageChild.props
+            const { iosIconName, source } = imageChild.props
             if (iosIconName) {
               icon = {
                 iconType: 'SYSTEM',
@@ -247,13 +247,13 @@ If you want to use a custom component as your <Content />, you can use the menui
               }
             } else {
               // require('react-native/Libraries/Network/RCTNetworking')
-              // const { Image } =
-              //   require('react-native') as typeof import('react-native')
-              // const iconValue = Image.resolveAssetSource(source)
-              // icon = {
-              //   iconType: 'REQUIRE',
-              //   iconValue,
-              // }
+              const { Image } =
+                require('react-native') as typeof import('react-native')
+              const iconValue = Image.resolveAssetSource(source)
+              icon = {
+                iconType: 'REQUIRE',
+                iconValue,
+              }
             }
           }
         }
